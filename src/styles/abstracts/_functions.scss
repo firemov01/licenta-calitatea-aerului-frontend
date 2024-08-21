@@ -1,0 +1,77 @@
+@use 'sass:map';
+@use 'colors' as *;
+@use 'typography' as *;
+@use 'sizes' as *;
+
+@function clr($color, $shade) {
+  @if map.has-key($colors, $color, $shade) {
+    @return map.get($colors, $color, $shade);
+  } @else {
+    @error '$colors does not have that color!';
+  }
+}
+
+@function fs($font-size) {
+  @if map.has-key($font-sizes, $font-size) {
+    @return map.get($font-sizes, $font-size);
+  } @else {
+    @error '$font-sizes does not have that size!';
+  }
+}
+
+@function size($size) {
+  @if map.has-key($sizes, $size) {
+    @return map.get($sizes, $size);
+  } @else {
+    @error '$sizes does not have that size!';
+  }
+}
+
+@function fw($font-weight) {
+  @if map.has-key($font-weights, $font-weight) {
+    @return map.get($font-weights, $font-weight);
+  } @else {
+    @error '$font-weights does not have that weight!';
+  }
+}
+
+@function to-number($value) {
+  @if type-of($value) == 'number' {
+    @return $value;
+  } @else if type-of($value) != 'string' {
+    @error 'Value for `to-number` should be a number or a string.';
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: str-slice($value, 1, 1) == '-';
+  $numbers: (
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+  );
+
+  @for $i from if($minus, 2, 1) through str-length($value) {
+    $character: str-slice($value, $i, $i);
+
+    @if (index(map-keys($numbers), $character) or $character == '.') {
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map-get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map-get($numbers, $character) / $digits;
+      }
+    }
+  }
+
+  @return if($minus, -$result, $result);
+}

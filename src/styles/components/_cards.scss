@@ -1,0 +1,36 @@
+@use '../abstracts/' as *;
+
+.card {
+  --card-padding: #{$padding-card-body};
+
+  display: grid;
+  gap: 1rem;
+  border-radius: var(--border-radius, 0);
+
+  & > img {
+    object-fit: cover;
+  }
+
+  & > :where(img, picture):first-child {
+    border-top-left-radius: var(--border-radius, 0);
+    border-top-right-radius: var(--border-radius, 0);
+  }
+
+  & > :where(img, picture):last-child {
+    border-bottom-left-radius: var(--border-radius, 0);
+    border-bottom-right-radius: var(--border-radius, 0);
+    margin-top: auto;
+  }
+
+  & > :not(img):not(picture) {
+    margin-inline: var(--card-padding, 1rem);
+  }
+
+  & > :not(img):not(picture):first-child {
+    margin-top: var(--card-padding, 1rem);
+  }
+
+  & > :last-of-type:not(img):not(picture) {
+    margin-bottom: var(--card-padding, 1rem);
+  }
+}

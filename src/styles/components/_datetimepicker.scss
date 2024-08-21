@@ -1,0 +1,17 @@
+.datetimepicker {
+    width: 180px;
+
+    & .MuiInputBase-root {
+        // padding: 0;
+    }
+
+    & .MuiButtonBase-root {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    & .MuiInputBase-input {
+        padding-top: 6px;
+        padding-bottom: 7px;
+    }
+}

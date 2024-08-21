@@ -1,0 +1,23 @@
+$sizes: (
+  '8': 0.5rem,
+  '12': 0.75rem,
+  '16': 1rem,
+  '20': 1.25rem,
+  '24': 1.5rem,
+  '32': 2rem,
+  '36': 2.25rem,
+  '48': 3rem,
+);
+
+$padding-hero: clamp(13rem, 15vh, 20rem);
+$padding-section: clamp(3rem, 10vh, 7rem);
+$padding-card-body: clamp(2rem, 3.5vw, 5rem);
+
+$gap-grid: 1.5rem;
+$gap-flex-group: 1rem;
+
+$container-inline-padding: 1rem;
+
+$container-max-width-sm: 60rem;
+$container-max-width: 70rem;
+$container-max-width-xl: 80rem;
